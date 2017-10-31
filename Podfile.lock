@@ -1,0 +1,18 @@
+PODS:
+  - FAPanels (0.3.5)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+
+DEPENDENCIES:
+  - FAPanels
+  - R.swift
+
+SPEC CHECKSUMS:
+  FAPanels: 4994ce52d2d54a4de5eea2cc0cefc068969d8cef
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+
+PODFILE CHECKSUM: cd8c7609ebc43fe6fac45f8e0b31dac4a9792e42
+
+COCOAPODS: 1.3.1
