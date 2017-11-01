@@ -31,8 +31,16 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 0 images.
+  /// This `R.image` struct is generated, and contains static references to 1 images.
   struct image {
+    /// Image `icnMenu`.
+    static let icnMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "icnMenu")
+    
+    /// `UIImage(named: "icnMenu", bundle: ..., traitCollection: ...)`
+    static func icnMenu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.icnMenu, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
@@ -41,8 +49,13 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 0 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `cellList`.
+    static let cellList: Rswift.ReuseIdentifier<FeedListCell> = Rswift.ReuseIdentifier(identifier: "cellList")
+    /// Reuse identifier `cellMenu`.
+    static let cellMenu: Rswift.ReuseIdentifier<MenuCell> = Rswift.ReuseIdentifier(identifier: "cellMenu")
+    
     fileprivate init() {}
   }
   
@@ -92,7 +105,7 @@ struct R: Rswift.Validatable {
   
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
-      // There are no resources to validate
+      try _R.validate()
     }
     
     fileprivate init() {}
@@ -103,24 +116,38 @@ struct R: Rswift.Validatable {
   fileprivate init() {}
 }
 
-struct _R {
+struct _R: Rswift.Validatable {
+  static func validate() throws {
+    try storyboard.validate()
+  }
+  
   struct nib {
     fileprivate init() {}
   }
   
-  struct storyboard {
-    struct feedDetail: Rswift.StoryboardResourceType {
+  struct storyboard: Rswift.Validatable {
+    static func validate() throws {
+      try feedList.validate()
+    }
+    
+    struct feedDetail: Rswift.StoryboardResourceWithInitialControllerType {
+      typealias InitialController = FeedDetailViewController
+      
       let bundle = R.hostingBundle
       let name = "FeedDetail"
       
       fileprivate init() {}
     }
     
-    struct feedList: Rswift.StoryboardResourceWithInitialControllerType {
-      typealias InitialController = FeedListViewController
+    struct feedList: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
       let name = "FeedList"
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "icnMenu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icnMenu' is used in storyboard 'FeedList', but couldn't be loaded.") }
+      }
       
       fileprivate init() {}
     }
@@ -135,7 +162,7 @@ struct _R {
     }
     
     struct menu: Rswift.StoryboardResourceWithInitialControllerType {
-      typealias InitialController = UIKit.UIViewController
+      typealias InitialController = MenuViewController
       
       let bundle = R.hostingBundle
       let name = "Menu"

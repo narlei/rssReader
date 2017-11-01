@@ -1,18 +1,33 @@
 PODS:
+  - Alamofire (4.5.1)
   - FAPanels (0.3.5)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
+  - SwiftyXMLParser (4.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - FAPanels
   - R.swift
+  - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
+
+EXTERNAL SOURCES:
+  SwiftyXMLParser:
+    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+
+CHECKOUT OPTIONS:
+  SwiftyXMLParser:
+    :commit: bd62bc779bde32e752db4aa8ca0035c9390eb2b1
+    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   FAPanels: 4994ce52d2d54a4de5eea2cc0cefc068969d8cef
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  SwiftyXMLParser: 42cf1c5de8bcdfa0218eb7f054b536635cb64b77
 
-PODFILE CHECKSUM: cd8c7609ebc43fe6fac45f8e0b31dac4a9792e42
+PODFILE CHECKSUM: 17aa069d6a52eeb0f8dd0e6593d3ad2b7dbac89b
 
 COCOAPODS: 1.3.1

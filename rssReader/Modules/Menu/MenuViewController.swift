@@ -10,26 +10,56 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    // MARK: Outlets
+    
+    @IBOutlet weak var tableViewMenu: UITableView!
+    
+    // MARK: Properties
+    var arrayItems = NSMutableArray()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.loadMenuItems()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    func loadMenuItems(){
+        
+        self.arrayItems = NSMutableArray()
+        
+        self.arrayItems.add(MenuItem(title: "AutoNews", url: "http://revistaautoesporte.globo.com/Revista/Autoesporte/Rss/0,,EDT0-10142,00.xml"))
+        self.arrayItems.add(MenuItem(title: "Profissionais TI", url: "http://feeds2.feedburner.com/profissionaisti"))
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
 
+}
+
+
+extension MenuViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let menuItem = self.arrayItems.object(at: indexPath.row) as! MenuItem
+        FeedManager.main.loadItem(url: menuItem.url!)
+        panel?.closeLeft()
+    }
+    
+}
+
+extension MenuViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.arrayItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellMenu", for: indexPath) as! MenuCell
+        cell.initialize(item: self.arrayItems.object(at: indexPath.row) as! MenuItem)
+        return cell
+    }
 }
