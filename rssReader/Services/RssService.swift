@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import SwiftyXMLParser
+import AlamofireRSSParser
 
 
 enum Result<T> {
@@ -18,43 +18,18 @@ enum Result<T> {
 
 class RssService {
     
-    class func getData(url:String, onComplete:@escaping (Result<Rss>)-> Void) {
+    class func getDataParsed(url:String, onComplete:@escaping (Result<RSSFeed>)-> Void) {
         
-        Alamofire.request(url).response { (response) in
-            if let data = response.data {
-                let xml = XML.parse(data)
-                
-                let rssXml = xml["rss"]["channel"]
-                
-                var arrayReturn = [RssItem]()
-                
-                for item in rssXml["item"] {
-                    var rssItem = RssItem()
-                    if let title = item["title"].text {
-                        rssItem.title = title
-                    }
-                    if let title = item["description"].text {
-                        rssItem.text = title
-                    }
-                    if let title = item["content:encoded"].text {
-                        rssItem.text = title
-                    }
-                    if let title = item["link"].text {
-                        rssItem.link = title
-                    }
-                    if let title = item["image"].text {
-                        rssItem.image = title
-                    }
-                    arrayReturn.append(rssItem)
+        Alamofire.request(url).responseRSS() { (response) -> Void in
+            if let feed: RSSFeed = response.result.value {
+                onComplete(.success(feed))
+            }else{
+                if let error = response.error {
+                    onComplete(.failure(error))
+                }else{
+                    let error = NSError(domain:"", code:601, userInfo:nil)
+                    onComplete(.failure(error))
                 }
-                
-                var rss = Rss()
-                rss.url = url
-                rss.arrayItems = arrayReturn
-                rss.title = rssXml["title"].text
-
-                
-                onComplete(.success(rss))
             }
         }
     }

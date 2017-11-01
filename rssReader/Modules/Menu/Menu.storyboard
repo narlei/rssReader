@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SsM-Nd-jOg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SsM-Nd-jOg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rssReader" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgj-bf-rUC">
-                                <rect key="frame" x="16" y="21" width="79.5" height="21"/>
+                                <rect key="frame" x="16" y="28" width="79.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rcj-0t-rad">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMenu" id="kAB-ri-ii5" customClass="MenuCell" customModule="rssReader" customModuleProvider="target">
@@ -36,7 +36,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePb-uC-O3Z">
-                                                    <rect key="frame" x="16" y="12" width="351" height="18"/>
+                                                    <rect key="frame" x="16" y="15" width="351" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -63,11 +63,11 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rcj-0t-rad" firstAttribute="trailing" secondItem="BCg-Xp-iAu" secondAttribute="trailing" id="18B-2w-ITe"/>
-                            <constraint firstItem="Dgj-bf-rUC" firstAttribute="top" secondItem="BCg-Xp-iAu" secondAttribute="top" constant="1" id="9TM-oJ-EV7"/>
+                            <constraint firstItem="Dgj-bf-rUC" firstAttribute="top" secondItem="BCg-Xp-iAu" secondAttribute="top" constant="8" id="9TM-oJ-EV7"/>
                             <constraint firstItem="Dgj-bf-rUC" firstAttribute="leading" secondItem="BCg-Xp-iAu" secondAttribute="leading" constant="16" id="9ZK-02-eNt"/>
                             <constraint firstItem="rcj-0t-rad" firstAttribute="leading" secondItem="BCg-Xp-iAu" secondAttribute="leading" id="GRF-OX-Q3k"/>
                             <constraint firstItem="rcj-0t-rad" firstAttribute="bottom" secondItem="BCg-Xp-iAu" secondAttribute="bottom" id="are-ik-vhM"/>
-                            <constraint firstItem="rcj-0t-rad" firstAttribute="top" secondItem="qlK-NY-FBu" secondAttribute="top" constant="60" id="pXW-Wl-JEw"/>
+                            <constraint firstItem="rcj-0t-rad" firstAttribute="top" secondItem="qlK-NY-FBu" secondAttribute="top" constant="70" id="pXW-Wl-JEw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BCg-Xp-iAu"/>
                     </view>

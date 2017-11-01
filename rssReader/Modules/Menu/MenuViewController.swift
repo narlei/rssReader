@@ -20,9 +20,13 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadMenuItems()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadMenuItems()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -31,9 +35,19 @@ class MenuViewController: UIViewController {
         
         self.arrayItems = NSMutableArray()
         
-        self.arrayItems.add(MenuItem(title: "AutoNews", url: "http://revistaautoesporte.globo.com/Revista/Autoesporte/Rss/0,,EDT0-10142,00.xml"))
-        self.arrayItems.add(MenuItem(title: "Profissionais TI", url: "http://feeds2.feedburner.com/profissionaisti"))
-
+        let data = UserDefaults.standard.value(forKey: Constants.rssSaveKey) as? Data
+        
+        var arrayItems = NSMutableArray()
+        
+        if data != nil {
+            arrayItems = NSKeyedUnarchiver.unarchiveObject(with: data!) as! NSMutableArray
+            self.arrayItems.addObjects(from: arrayItems as! [Any])
+        }
+        
+//        self.arrayItems.add(MenuItem(title: "AutoNews", url: "http://revistaautoesporte.globo.com/Revista/Autoesporte/Rss/0,,EDT0-10142,00.xml"))
+//        self.arrayItems.add(MenuItem(title: "Profissionais TI", url: "http://feeds2.feedburner.com/profissionaisti"))
+//        self.arrayItems.add(MenuItem(title: "Nao entendo", url: "http://feeds.feedburner.com/Naointendo"))
+//        self.arrayItems.add(MenuItem(title: "iTunes", url: "https://itunes.apple.com/br/rss/customerreviews/id=866078699/sortBy=mostRecent/xml"))
     }
 
 }

@@ -8,11 +8,11 @@
 
 import UIKit
 import WebKit
-
+import AlamofireRSSParser
 
 class FeedDetailViewController: UIViewController {
     
-    var rssItem:RssItem!
+    var rssItem:RSSItem!
 
     @IBOutlet weak var webViewText: WKWebView!
     
@@ -20,7 +20,22 @@ class FeedDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = rssItem.title
-        self.webViewText.loadHTMLString(rssItem.text!, baseURL: nil)
+        
+        if let descript = rssItem.itemDescription {
+            self.webViewText.loadHTMLString(descript, baseURL: nil)
+        }else{
+            if let descript = rssItem.content {
+                let html = """
+                    <html lang="en"><head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="initial-scale=1">
+                    <body>
+                    \(descript)
+                    </body>
+                """
+                self.webViewText.loadHTMLString(html, baseURL: nil)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

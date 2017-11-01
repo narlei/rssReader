@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AlamofireRSSParser
+import SDWebImage
+import DateToolsSwift
 
 class FeedListCell: UITableViewCell {
 
@@ -18,7 +21,7 @@ class FeedListCell: UITableViewCell {
     @IBOutlet weak var imageViewCover: UIImageView!
     
     // MARK: Properties
-    var rssItem:RssItem!
+    var rssItem:RSSItem!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,10 +33,27 @@ class FeedListCell: UITableViewCell {
 
     }
 
-    func initialize(item: RssItem) {
+    func initialize(item: RSSItem) {
         self.rssItem = item
         self.labelTitle.text = item.title
-        self.labelText.text = item.text
+        
+        if let date = item.pubDate {
+            self.labelDate.text = "publicado em " + date.format(with: "dd/MM/yyyy")
+        }
+        
+        let str = item.itemDescription?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        self.labelText.text = str
+        
+        self.imageViewCover.image = UIImage()
+        
+        if let imageUrl = item.mediaThumbnail {
+            self.imageViewCover.sd_setImage(with: URL(string:imageUrl), completed: nil)
+        }else{
+            if (item.imagesFromDescription != nil) && item.imagesFromDescription!.count > 0 {
+                let imageUrl = item.imagesFromDescription!.first!
+                self.imageViewCover.sd_setImage(with: URL(string:imageUrl), completed: nil)
+            }
+        }
     }
     
 }

@@ -6,18 +6,22 @@ target 'rssReader' do
   use_frameworks!
 
   # Pods for rssReader
-  
+
   # Menu
   pod 'FAPanels'
 
-  # Project Helper
+  # Helper
   pod 'R.swift'
+  pod 'DateToolsSwift'
 
   # Request
   pod 'Alamofire'
 
   # XML
-  pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
+  pod 'AlamofireRSSParser'
+
+  # Cache
+  pod 'SDWebImage'
 
   target 'rssReaderTests' do
     inherit! :search_paths

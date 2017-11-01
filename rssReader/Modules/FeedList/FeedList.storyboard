@@ -41,7 +41,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uzt-Sv-Yz4">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uzt-Sv-Yz4">
                                                     <rect key="frame" x="307" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Xec-Nb-xv6"/>
@@ -75,6 +75,7 @@
                                                 <constraint firstItem="Uzt-Sv-Yz4" firstAttribute="leading" secondItem="suf-QD-zzI" secondAttribute="trailing" constant="6" id="ewo-yM-2UI"/>
                                                 <constraint firstItem="XQ0-LR-scx" firstAttribute="leading" secondItem="ISO-ik-oHV" secondAttribute="leadingMargin" id="faE-iE-qcO"/>
                                                 <constraint firstItem="hvC-PR-SLq" firstAttribute="leading" secondItem="ISO-ik-oHV" secondAttribute="leadingMargin" id="h1W-wC-2kP"/>
+                                                <constraint firstItem="jXH-zF-HS0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Uzt-Sv-Yz4" secondAttribute="bottom" constant="6" id="hZ6-OZ-9Pm"/>
                                                 <constraint firstItem="Uzt-Sv-Yz4" firstAttribute="leading" secondItem="XQ0-LR-scx" secondAttribute="trailing" constant="6" id="qed-QC-ydj"/>
                                                 <constraint firstItem="jXH-zF-HS0" firstAttribute="leading" secondItem="ISO-ik-oHV" secondAttribute="leading" constant="8" id="wTy-0Q-dxq"/>
                                                 <constraint firstItem="suf-QD-zzI" firstAttribute="top" secondItem="hvC-PR-SLq" secondAttribute="bottom" constant="4" id="zEo-lh-TXX"/>
@@ -110,7 +111,11 @@
                                 <action selector="openMenu" destination="xCy-2o-4Su" id="tPk-wO-FT1"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2wX-cY-6tW"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2wX-cY-6tW">
+                            <connections>
+                                <action selector="openAddItem" destination="xCy-2o-4Su" id="ymb-nB-bdC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableViewList" destination="WL0-TO-JlF" id="30q-nZ-6fk"/>

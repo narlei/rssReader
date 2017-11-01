@@ -1,33 +1,33 @@
 PODS:
   - Alamofire (4.5.1)
+  - AlamofireRSSParser (2.0.1):
+    - Alamofire
+  - DateToolsSwift (2.0.3)
   - FAPanels (0.3.5)
   - R.swift (4.0.0):
     - R.swift.Library (~> 4.0.0)
   - R.swift.Library (4.0.0)
-  - SwiftyXMLParser (4.0.0)
+  - SDWebImage (4.1.2):
+    - SDWebImage/Core (= 4.1.2)
+  - SDWebImage/Core (4.1.2)
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireRSSParser
+  - DateToolsSwift
   - FAPanels
   - R.swift
-  - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
-
-EXTERNAL SOURCES:
-  SwiftyXMLParser:
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
-
-CHECKOUT OPTIONS:
-  SwiftyXMLParser:
-    :commit: bd62bc779bde32e752db4aa8ca0035c9390eb2b1
-    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+  - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireRSSParser: 86243cd156b94b9d97d8f915fa44a0f15bd1bfb7
+  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   FAPanels: 4994ce52d2d54a4de5eea2cc0cefc068969d8cef
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
-  SwiftyXMLParser: 42cf1c5de8bcdfa0218eb7f054b536635cb64b77
+  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
 
-PODFILE CHECKSUM: 17aa069d6a52eeb0f8dd0e6593d3ad2b7dbac89b
+PODFILE CHECKSUM: 3c5d04ed0dac95042b4d5e77d555222a7973b234
 
 COCOAPODS: 1.3.1

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireRSSParser
 
 protocol FeedViewModelProtocol {
     /// Reload rss object
@@ -16,33 +17,34 @@ protocol FeedViewModelProtocol {
     func getTitle() -> String
     
     /// Return all items
-    func getItems() -> [RssItem]
+    func getItems() -> [RSSItem]
 }
 
 class FeedViewModel: FeedViewModelProtocol {
-    var rss:Rss!
+    var rss:RSSFeed!
+    var url:String!
     
     func initialize(url:String) {
-        self.rss = Rss()
-        self.rss.url = url
+        self.url = url
     }
     
     func getTitle() -> String {
-        if let title = rss.title {
-            return title
+        if rss != nil {
+            return rss.title ?? "Unknown"
         }
         return "Carregando..."
     }
     
-    func getItems() -> [RssItem] {
-        if let array = rss.arrayItems {
-            return array
+    func getItems() -> [RSSItem] {
+        if rss != nil {
+            return rss.items
         }
-        return [RssItem]()
+        return [RSSItem]()
     }
     
     func reload(onComplete:@escaping (Bool) -> Void){
-        RssService.getData(url: rss.url) { (result) in
+        
+        RssService.getDataParsed(url: self.url) { (result) in
             switch result {
             case .success(let response):
                 self.rss = response
