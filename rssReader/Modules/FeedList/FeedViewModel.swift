@@ -48,10 +48,10 @@ class FeedViewModel: FeedViewModelProtocol {
             switch result {
             case .success(let response):
                 self.rss = response
-            case .failure(let _):
-                break
+                onComplete(true)
+            case .failure:
+                onComplete(false)
             }
-            onComplete(true)
         }
     }
 }

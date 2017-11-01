@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FAPanels
 
 class MenuViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        panel?.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -34,24 +36,27 @@ class MenuViewController: UIViewController {
     func loadMenuItems(){
         
         self.arrayItems = NSMutableArray()
-        
-        let data = UserDefaults.standard.value(forKey: Constants.rssSaveKey) as? Data
-        
-        var arrayItems = NSMutableArray()
-        
-        if data != nil {
-            arrayItems = NSKeyedUnarchiver.unarchiveObject(with: data!) as! NSMutableArray
-            self.arrayItems.addObjects(from: arrayItems as! [Any])
+
+        if let array = MenuItemsManager.getItems() {
+            self.arrayItems.addObjects(from: array as! [Any])
         }
         
+        self.tableViewMenu.reloadData()
 //        self.arrayItems.add(MenuItem(title: "AutoNews", url: "http://revistaautoesporte.globo.com/Revista/Autoesporte/Rss/0,,EDT0-10142,00.xml"))
 //        self.arrayItems.add(MenuItem(title: "Profissionais TI", url: "http://feeds2.feedburner.com/profissionaisti"))
 //        self.arrayItems.add(MenuItem(title: "Nao entendo", url: "http://feeds.feedburner.com/Naointendo"))
 //        self.arrayItems.add(MenuItem(title: "iTunes", url: "https://itunes.apple.com/br/rss/customerreviews/id=866078699/sortBy=mostRecent/xml"))
     }
+    
+    
 
 }
 
+extension MenuViewController: FAPanelStateDelegate {
+    func leftPanelWillBecomeActive() {
+        self.loadMenuItems()
+    }
+}
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

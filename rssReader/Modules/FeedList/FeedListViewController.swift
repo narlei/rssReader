@@ -13,6 +13,7 @@ class FeedListViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var tableViewList: UITableView!
+    @IBOutlet weak var emptyView: UIView!
     
     // MARK: Properties
     
@@ -24,16 +25,16 @@ class FeedListViewController: UIViewController {
         
         self.tableViewList.estimatedRowHeight = CGFloat(100)
         self.tableViewList.rowHeight = UITableViewAutomaticDimension
-
+        
         // Refresh Control
         self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: #selector(self.loadData), for: .valueChanged)
+        self.refreshControl.addTarget(self, action: #selector(self.loadData(keep:)), for: .valueChanged)
         self.tableViewList.addSubview(self.refreshControl)
         
         self.registerForPreviewing(with: self, sourceView: self.tableViewList)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -49,25 +50,45 @@ class FeedListViewController: UIViewController {
     func initialize(viewModel:FeedViewModelProtocol) {
         self.viewModel = viewModel
         self.title = viewModel.getTitle()
-        self.loadData(force: false)
+        self.loadData(keep: true)
     }
     
-    @objc func loadData(force:Bool = true) {
-        if !force && self.viewModel.getItems().count > 0 {
+    @objc func loadData(keep:Bool = true) {
+        if keep && self.viewModel.getItems().count > 0 {
             DispatchQueue.main.async {
                 self.title = self.viewModel.getTitle()
                 self.tableViewList.reloadData()
                 self.refreshControl.endRefreshing()
+                self.loadEmtpyView()
             }
             return
         }
         
-        self.viewModel.reload { (finished) in
+        self.viewModel.reload { (success) in
             DispatchQueue.main.async {
                 self.title = self.viewModel.getTitle()
                 self.tableViewList.reloadData()
                 self.refreshControl.endRefreshing()
+                self.loadEmtpyView()
+                
+                if !success {
+                    let alert = UIAlertController(title: "Atenção", message: "O Feed do Rss não pode ser carregado!", preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .cancel) { (UIAlertAction) in
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true) {
+                    }
+                }
             }
+        }
+    }
+    
+    func loadEmtpyView(){
+        if self.viewModel != nil && self.viewModel.getItems().count > 0 {
+            self.emptyView.isHidden = true
+        }else{
+            self.emptyView.isHidden = false
         }
     }
     
@@ -97,18 +118,7 @@ class FeedListViewController: UIViewController {
                 }
             }
             
-            let data = UserDefaults.standard.value(forKey: Constants.rssSaveKey) as? Data
-            
-            var arrayItems = NSMutableArray()
-            
-            if data != nil {
-                arrayItems = NSKeyedUnarchiver.unarchiveObject(with: data!) as! NSMutableArray
-            }
-            
-            arrayItems.add(menuItem)
-            
-            UserDefaults.standard.setValue(NSKeyedArchiver.archivedData(withRootObject: arrayItems), forKey: "RSS_ITEMS")
-            
+            MenuItemsManager.save(item: menuItem)
         }))
         
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))

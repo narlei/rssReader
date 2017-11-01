@@ -39,6 +39,8 @@ class FeedListCell: UITableViewCell {
         
         if let date = item.pubDate {
             self.labelDate.text = "publicado em " + date.format(with: "dd/MM/yyyy")
+        }else{
+            self.labelDate.text = ""
         }
         
         let str = item.itemDescription?.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)

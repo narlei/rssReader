@@ -31,14 +31,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
     /// Image `icnMenu`.
     static let icnMenu = Rswift.ImageResource(bundle: R.hostingBundle, name: "icnMenu")
+    /// Image `imgStart2`.
+    static let imgStart2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "imgStart2")
+    /// Image `imgStart`.
+    static let imgStart = Rswift.ImageResource(bundle: R.hostingBundle, name: "imgStart")
     
     /// `UIImage(named: "icnMenu", bundle: ..., traitCollection: ...)`
     static func icnMenu(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.icnMenu, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "imgStart", bundle: ..., traitCollection: ...)`
+    static func imgStart(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.imgStart, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "imgStart2", bundle: ..., traitCollection: ...)`
+    static func imgStart2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.imgStart2, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -146,7 +160,9 @@ struct _R: Rswift.Validatable {
       let name = "FeedList"
       
       static func validate() throws {
+        if UIKit.UIImage(named: "imgStart") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'imgStart' is used in storyboard 'FeedList', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icnMenu") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icnMenu' is used in storyboard 'FeedList', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "imgStart2") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'imgStart2' is used in storyboard 'FeedList', but couldn't be loaded.") }
       }
       
       fileprivate init() {}

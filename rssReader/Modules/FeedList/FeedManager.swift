@@ -21,9 +21,11 @@ class FeedManager {
         var viewModel = FeedViewModel()
         viewModel.initialize(url: url)
         
-        let viewModels = self.arrayViewModels.filter({$0.rss.title == url})
+        let viewModels = self.arrayViewModels.filter({$0.url == url})
         if viewModels.count > 0 {
             viewModel = viewModels.first!
+        }else{
+            self.arrayViewModels.append(viewModel)
         }
      
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

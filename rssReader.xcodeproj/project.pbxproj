@@ -24,6 +24,8 @@
 		D5084C521FA935D3003C5262 /* FeedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5084C511FA935D3003C5262 /* FeedListCell.swift */; };
 		D50F12F41FA9CCB500C798E5 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F12F31FA9CCB500C798E5 /* FeedViewModel.swift */; };
 		D50F12F81FAA7EE700C798E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F12F71FAA7EE700C798E5 /* Constants.swift */; };
+		D50F12FB1FAA823E00C798E5 /* MenuItemsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F12FA1FAA823E00C798E5 /* MenuItemsManager.swift */; };
+		D50F12FE1FAA900E00C798E5 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50F12FD1FAA900E00C798E5 /* UIAlertControllerExtension.swift */; };
 		D51CBD2E1FA939F800817E7D /* RssService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CBD2D1FA939F800817E7D /* RssService.swift */; };
 		D51CBD321FA93CA400817E7D /* FeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51CBD311FA93CA400817E7D /* FeedManager.swift */; };
 		DDDFFB80B66DD2D37520276F /* Pods_rssReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B317E46FEF135B093645246 /* Pods_rssReaderTests.framework */; };
@@ -65,6 +67,8 @@
 		D5084C511FA935D3003C5262 /* FeedListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListCell.swift; sourceTree = "<group>"; };
 		D50F12F31FA9CCB500C798E5 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		D50F12F71FAA7EE700C798E5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D50F12FA1FAA823E00C798E5 /* MenuItemsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsManager.swift; sourceTree = "<group>"; };
+		D50F12FD1FAA900E00C798E5 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		D51CBD2D1FA939F800817E7D /* RssService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssService.swift; sourceTree = "<group>"; };
 		D51CBD311FA93CA400817E7D /* FeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedManager.swift; sourceTree = "<group>"; };
 		E70D879EC194A06DD646AC28 /* Pods-rssReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rssReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-rssReader/Pods-rssReader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 				D5084C371FA91F79003C5262 /* AppDelegate */,
 				D51CBD281FA938CA00817E7D /* Services */,
 				D50F12F61FAA7ED600C798E5 /* Enums */,
+				D50F12FC1FAA8FFC00C798E5 /* Extensions */,
 				D5084C4E1FA92774003C5262 /* Models */,
 				D50F12F91FAA7FA900C798E5 /* Persistence */,
 				D5084C391FA91F9C003C5262 /* Modules */,
@@ -232,8 +237,17 @@
 		D50F12F91FAA7FA900C798E5 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				D50F12FA1FAA823E00C798E5 /* MenuItemsManager.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		D50F12FC1FAA8FFC00C798E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D50F12FD1FAA900E00C798E5 /* UIAlertControllerExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D51CBD281FA938CA00817E7D /* Services */ = {
@@ -487,10 +501,12 @@
 				D5012EC01FA91B3F003D637C /* AppDelegate.swift in Sources */,
 				D5084C4D1FA92769003C5262 /* MenuCell.swift in Sources */,
 				D5084C4B1FA920F9003C5262 /* R.generated.swift in Sources */,
+				D50F12FE1FAA900E00C798E5 /* UIAlertControllerExtension.swift in Sources */,
 				D5084C521FA935D3003C5262 /* FeedListCell.swift in Sources */,
 				D51CBD2E1FA939F800817E7D /* RssService.swift in Sources */,
 				D5084C3F1FA91FCB003C5262 /* MenuViewController.swift in Sources */,
 				D5084C481FA92022003C5262 /* FeedDetailViewController.swift in Sources */,
+				D50F12FB1FAA823E00C798E5 /* MenuItemsManager.swift in Sources */,
 				D51CBD321FA93CA400817E7D /* FeedManager.swift in Sources */,
 				D50F12F41FA9CCB500C798E5 /* FeedViewModel.swift in Sources */,
 				D50F12F81FAA7EE700C798E5 /* Constants.swift in Sources */,
